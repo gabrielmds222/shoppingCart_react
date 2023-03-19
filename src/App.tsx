@@ -1,5 +1,5 @@
-import './App.css'
+import "./App.css";
 
 export default function App() {
-  return <div>Olá mundo!</div>
+  return <div>Hello world</div>;
 }
