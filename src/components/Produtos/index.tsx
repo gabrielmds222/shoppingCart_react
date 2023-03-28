@@ -2,7 +2,7 @@ import React from "react";
 
 const Produtos = () => {
   return (
-    <div>
+    <>
       <div className="iten-content">
         <img src="#" alt="Imagem do produto" />
         <div className="item-description">
@@ -17,7 +17,7 @@ const Produtos = () => {
         <p>R$60,00</p>
         <button>Lixo</button>
       </div>
-    </div>
+    </>
   );
 };
 
