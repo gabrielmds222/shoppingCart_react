@@ -4,9 +4,6 @@
   font-weight: 400;
 }
 
-/* body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-} */
+body {
+  background-color: #f6f6f6;
+}
