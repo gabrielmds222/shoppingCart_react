@@ -8,14 +8,16 @@ export default function App() {
   return (
     <>
       <main>
-        <Title />
+        <div className="page-title">
+          <h2>Carrinho de compras</h2>
+          <p>Você tem X itens</p>
+        </div>
         <div className="content">
           <section>
             <table>
               <thead>
                 <tr>
                   <th>Produto</th>
-                  <th>Preço</th>
                   <th>Quantidade</th>
                   <th>Total</th>
                   <th>-</th>
