@@ -2,7 +2,6 @@ import "./App.css";
 
 import Produtos from "./components/Produtos";
 import Resumo from "./components/Resumo";
-import Title from "./components/Title";
 
 export default function App() {
   return (
