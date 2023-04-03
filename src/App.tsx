@@ -1,7 +1,10 @@
 import "./App.css";
 
-import Produtos from "./components/Produtos";
+import Produto from "./components/Produto";
 import Resumo from "./components/Resumo";
+
+import Product from "./components/Produto/interfaces";
+import products from "./data";
 
 export default function App() {
   return (
@@ -23,7 +26,17 @@ export default function App() {
                 </tr>
               </thead>
               <tbody>
-                <Produtos />
+                {products.length > 0
+                  ? products.map((product: Product) => (
+                      <Produto
+                        id={product.id}
+                        img={product.img}
+                        name={product.name}
+                        description={product.description}
+                        price={product.price}
+                      />
+                    ))
+                  : "Nenhum item no carrinho"}
               </tbody>
             </table>
           </section>
