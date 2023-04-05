@@ -15,13 +15,13 @@ const products: Product[] = [
     img: Pizza,
     name: "Pizza",
     description: "Pizza do boy Óliver",
-    price: 59.99,
+    price: 79.99,
   },
   {
     id: 3,
     img: Pizza,
     name: "Pizza",
-    description: "Pizza do boy Óliver",
+    description: "Pizza do boy Aquiles",
     price: 59.99,
   },
 ];
