@@ -11,8 +11,8 @@ const Produto = ({ id, img, name, description, price }: Product) => {
     <tr>
       <td>
         <div className="produto">
+          <img src={img} />
           <div className="infos">
-            <img src={img} />
             <div className="nome">{name}</div>
             <div className="descricao">{description}</div>
             <div className="preco">R$ {price.toFixed(2).toString()}</div>
@@ -31,7 +31,7 @@ const Produto = ({ id, img, name, description, price }: Product) => {
       <td>R$ {(quantidade * price).toFixed(2).toString()}</td>
       <td>
         <button className="remove">
-          <Trash size={32} color="#802323" weight="bold" />
+          <Trash size={32} color="#666" weight="bold" />
         </button>
       </td>
     </tr>
