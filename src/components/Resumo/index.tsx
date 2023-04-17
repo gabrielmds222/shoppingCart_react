@@ -1,32 +1,50 @@
 import React from "react";
+import { Repeat } from "@phosphor-icons/react";
+
+import "./style.css";
 
 const Resumo = () => {
   return (
     <>
       <div className="box">
-        <header>Resumo da compra</header>
+        <header>Resumo</header>
+
         <div className="info">
           <div>
-            <span>Sub-total</span>
-            <span>R$ 418</span>
+            <span>Frete</span>
           </div>
+          <div>
+            <span>CEP</span>
+            <div className="frete">
+              <input type="text" />
+              <button>
+                <Repeat size={24} color="#fff" weight="bold" />
+              </button>
+            </div>
+            <span>Preço</span>
+          </div>
+          <div>
+            <span className="cidade">Cidade</span>
+          </div>
+
+          <div>
+            <span>item</span>
+            <span>R$ 100,00</span>
+          </div>
+
           <div>
             <span>Frete</span>
-            <span>Gratuito</span>
+            <span>R$50,00</span>
           </div>
+
           <div>
-            <button>
-              Adicionar cupom de desconto
-              <i className="bx bx-right-arrow-alt"></i>
-            </button>
+            <span>Total</span>
+            <span>R$150,00</span>
           </div>
+
+          <button>Fechar pedido</button>
         </div>
-        <footer>
-          <span>Total</span>
-          <span>R$ 418</span>
-        </footer>
       </div>
-      <button>Finalizar Compra</button>
     </>
   );
 };

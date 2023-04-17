@@ -7,6 +7,9 @@ import Product from "./components/Produto/interfaces";
 import products from "./data";
 
 export default function App() {
+  // function removeProduct(id) {
+  //   const newList = products.filter((product) => product.id !== id)
+  // }
   return (
     <>
       <main>
@@ -19,10 +22,10 @@ export default function App() {
             <table>
               <thead>
                 <tr>
-                  <th>Produto</th>
-                  <th>Quantidade</th>
-                  <th>Total</th>
-                  <th>-</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>

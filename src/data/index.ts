@@ -24,6 +24,13 @@ const products: Product[] = [
     description: "Pizza do boy Aquiles",
     price: 59.99,
   },
+  {
+    id: 4,
+    img: Pizza,
+    name: "Pizza",
+    description: "Pizza do boy Aquiles",
+    price: 59.99,
+  },
 ];
 
 export default products;
