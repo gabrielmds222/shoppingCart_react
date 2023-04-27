@@ -8,7 +8,7 @@ import "./style.css";
 
 const Produto = () => {
   const [quantidade, setQuantidade] = useState<number>(1);
-  const [removedItem, setRemovedItem] = useState([]);
+  const [removedItem, setRemovedItem] = useState<Array<any>>([]);
 
   const handleRemove = (idToRemove: number) => {
     if (removedItem.includes(idToRemove)) {
@@ -18,7 +18,9 @@ const Produto = () => {
     }
   };
 
-  const filteredProducts = products.filter((p) => !removedItem.includes(p.id));
+  const filteredProducts: Array<any> = products.filter(
+    (p) => !removedItem.includes(p.id)
+  );
 
   return (
     <>
