@@ -42,7 +42,9 @@ const Resumo = () => {
             <span>R$150,00</span>
           </div>
 
-          <button>Fechar pedido</button>
+          <div className="btn-container">
+            <button>Fechar pedido</button>
+          </div>
         </div>
       </div>
     </>
