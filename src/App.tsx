@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "./App.css";
 
 import Produto from "./components/Produto";
@@ -7,9 +8,14 @@ import Product from "./components/Produto/interfaces";
 import products from "./data";
 
 export default function App() {
-  // function removeProduct(id) {
-  //   const newList = products.filter((product) => product.id !== id)
+  // const [inicialList, setInicialList] = useState(products);
+
+  // function removeProduto() {
+  //   console.log("Fui clicado");
   // }
+
+  // setInicialList;
+
   return (
     <>
       <main>
@@ -29,17 +35,11 @@ export default function App() {
                 </tr>
               </thead>
               <tbody>
-                {products.length > 0
-                  ? products.map((product: Product) => (
-                      <Produto
-                        id={product.id}
-                        img={product.img}
-                        name={product.name}
-                        description={product.description}
-                        price={product.price}
-                      />
-                    ))
-                  : "Nenhum item no carrinho"}
+                {/* {products.length > 0
+                  ? products.map((product: Product) => ( */}
+                <Produto />
+                {/* ))
+                  : "Nenhum item no carrinho"} */}
               </tbody>
             </table>
           </section>
@@ -50,18 +50,4 @@ export default function App() {
       </main>
     </>
   );
-}
-
-{
-  /* <main>
-<div className="lista-produtos">
-  <Title />
-  <div className="produtos">
-    <Produtos />
-  </div>
-  <div className="resumo">
-    <Resumo />
-  </div>
-</div>
-</main> */
 }
