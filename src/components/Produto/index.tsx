@@ -24,39 +24,44 @@ const Produto = () => {
 
   return (
     <>
-      {filteredProducts.map((product) => (
-        <tr>
-          <td>
-            <div className="produto">
-              <img src={product.img} />
-              <div className="infos">
-                <div className="nome">{product.name}</div>
-                <div className="descricao">{product.description}</div>
-                <div className="preco">
-                  R$ {product.price.toFixed(2).toString()}
+      {filteredProducts.length > 0
+        ? filteredProducts.map((product) => (
+            <tr>
+              <td>
+                <div className="produto">
+                  <img src={product.img} />
+                  <div className="infos">
+                    <div className="nome">{product.name}</div>
+                    <div className="descricao">{product.description}</div>
+                    <div className="preco">
+                      R$ {product.price.toFixed(2).toString()}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div className="qty">
-              <input
-                type="number"
-                value={quantidade}
-                onChange={(e) => setQuantidade(parseFloat(e.target.value))}
-              />
-            </div>
-          </td>
-          <td>R$ {(quantidade * product.price).toFixed(2).toString()}</td>
-          <td>
-            <button className="remove" onClick={() => handleRemove(product.id)}>
-              <Trash size={32} color="#666" weight="bold" />
-            </button>
+              </td>
+              <td>
+                <div className="qty">
+                  <input
+                    type="number"
+                    value={quantidade}
+                    onChange={(e) => setQuantidade(parseFloat(e.target.value))}
+                  />
+                </div>
+              </td>
+              <td>R$ {(quantidade * product.price).toFixed(2).toString()}</td>
+              <td>
+                <button
+                  className="remove"
+                  onClick={() => handleRemove(product.id)}
+                >
+                  <Trash size={32} color="#666" weight="bold" />
+                </button>
 
-            {/* <button onClick={() => console.log("apertou", id)}>Botão</button> */}
-          </td>
-        </tr>
-      ))}
+                {/* <button onClick={() => console.log("apertou", id)}>Botão</button> */}
+              </td>
+            </tr>
+          ))
+        : "Nenhum item no carrinho"}
     </>
   );
 };
