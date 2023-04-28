@@ -20,43 +20,52 @@ type ResponseCepDataType = {
 
 const Resumo = () => {
   const [user, setUser] = useState<ResponseCepDataType>();
-  const [cpfDigitado, setCpfDigitado] = useState<string>("");
+  const [cepDigitado, setCepDigitado] = useState<string>("");
+  const [precoFrete, setPrecoFrete] = useState<number>(0);
 
   async function handleCep(e: any) {
     e.preventDefault();
     api
-      .get(`/${cpfDigitado}/json`)
+      .get(`/${cepDigitado}/json`)
       .then((response) => setUser(response.data))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
   }
 
+  function verificaCep() {
+    if (user?.uf === "RN") {
+      setPrecoFrete(precoFrete + 20);
+    } else {
+      setPrecoFrete(precoFrete + 40);
+    }
+  }
+
   return (
     <>
       <div className="box">
-        <header>Resumo: {user?.localidade}</header>
+        <header>Resumo</header>
 
         <div className="info">
           <div>
-            <span>Frete: {user?.uf}</span>
+            <span>Frete</span>
           </div>
           <div>
             <span>CEP</span>
             <form className="frete" onSubmit={handleCep}>
               <input
                 type="text"
-                value={cpfDigitado}
-                onChange={(e) => setCpfDigitado(e.target.value)}
+                value={cepDigitado}
+                onChange={(e) => setCepDigitado(e.target.value)}
               />
-              <button type="submit">
+              <button type="submit" onClick={() => verificaCep}>
                 <Repeat size={24} color="#fff" weight="bold" />
               </button>
             </form>
-            <span>Preço</span>
+            <span>{precoFrete}</span>
           </div>
           <div>
-            <span className="cidade">Cidade</span>
+            <span className="cidade">{user?.localidade}</span>
           </div>
 
           <div>

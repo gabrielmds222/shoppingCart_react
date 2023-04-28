@@ -8,14 +8,6 @@ import Product from "./components/Produto/interfaces";
 import products from "./data";
 
 export default function App() {
-  // const [inicialList, setInicialList] = useState(products);
-
-  // function removeProduto() {
-  //   console.log("Fui clicado");
-  // }
-
-  // setInicialList;
-
   return (
     <>
       <main>
@@ -35,11 +27,7 @@ export default function App() {
                 </tr>
               </thead>
               <tbody>
-                {/* {products.length > 0
-                  ? products.map((product: Product) => ( */}
                 <Produto />
-                {/* ))
-                  : "Nenhum item no carrinho"} */}
               </tbody>
             </table>
           </section>
