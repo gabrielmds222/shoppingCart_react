@@ -7,21 +7,13 @@ import api from "../../api";
 
 type ResponseCepDataType = {
   cep: string;
-  logradouro: string;
-  complemento: string;
-  bairro: string;
   localidade: string;
   uf: string;
-  ibge: string;
-  gia: string;
-  ddd: string;
-  siafi: string;
 };
 
 const Resumo = () => {
   const [user, setUser] = useState<ResponseCepDataType>();
   const [cepDigitado, setCepDigitado] = useState<string>("");
-  const [precoFrete, setPrecoFrete] = useState<number>(0);
 
   async function handleCep(e: any) {
     e.preventDefault();
@@ -31,15 +23,20 @@ const Resumo = () => {
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
-  }
 
-  function verificaCep() {
-    if (user?.uf === "RN") {
-      setPrecoFrete(precoFrete + 20);
-    } else {
-      setPrecoFrete(precoFrete + 40);
+    // if (user?.uf === "RN") {
+    //   setPrecoFrete(precoFrete + 20);
+    //   console.log("preco frete 2", precoFrete);
+    // } else {
+    //   setPrecoFrete(precoFrete + 40);
+    // }
+
+    if (!cepDigitado) {
+      setUser({ cep: "", localidade: "", uf: "" });
     }
   }
+
+  const hasCepValueRN = user?.uf === "RN" ? 20 : user?.uf ? 40 : 0;
 
   return (
     <>
@@ -58,11 +55,11 @@ const Resumo = () => {
                 value={cepDigitado}
                 onChange={(e) => setCepDigitado(e.target.value)}
               />
-              <button type="submit" onClick={() => verificaCep}>
+              <button type="submit">
                 <Repeat size={24} color="#fff" weight="bold" />
               </button>
             </form>
-            <span>{precoFrete}</span>
+            <span>{hasCepValueRN}</span>
           </div>
           <div>
             <span className="cidade">{user?.localidade}</span>
