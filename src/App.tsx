@@ -4,10 +4,15 @@ import "./App.css";
 import Produto from "./components/Produto";
 import Resumo from "./components/Resumo";
 
-import Product from "./components/Produto/interfaces";
-import products from "./data";
+import defaultProducts from "./data/product";
 
 export default function App() {
+  const [products, setProducts] = useState(defaultProducts);
+
+  function handleDelete(id: number) {
+    setProducts(products.filter((el) => el.id !== id));
+  }
+
   return (
     <>
       <main>
@@ -27,7 +32,11 @@ export default function App() {
                 </tr>
               </thead>
               <tbody>
-                <Produto />
+                {products.length > 0
+                  ? products.map((product) => (
+                      <Produto product={product} handleDelete={handleDelete} />
+                    ))
+                  : "Nenhum item no carrinho"}
               </tbody>
             </table>
           </section>
