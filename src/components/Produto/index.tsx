@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import Product from "./interfaces";
+import products from "../../data/product";
 
 import { Trash } from "@phosphor-icons/react";
 import "./style.css";
@@ -33,9 +34,14 @@ const Produto = ({ product, handleDelete }: ProductProps) => {
             <input
               type="number"
               value={quantidade}
-              onChange={(event) =>
-                setQuantidade(parseFloat(event.target.value))
-              }
+              onChange={(event) => {
+                const newValue = parseFloat(event.target.value);
+                if (newValue >= 0) {
+                  setQuantidade(newValue);
+                } else {
+                  setQuantidade(0);
+                }
+              }}
             />
           </div>
         </td>
