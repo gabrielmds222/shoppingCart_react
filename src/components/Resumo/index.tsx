@@ -55,7 +55,16 @@ const Resumo = () => {
                 value={cepDigitado}
                 onChange={(e) => setCepDigitado(e.target.value)}
               />
-              <button type="submit">
+              <button
+                type="submit"
+                style={{
+                  backgroundColor: "#4DE1C1",
+                  border: "none",
+                  borderRadius: "5px",
+                  marginLeft: "5px",
+                  padding: "5px",
+                }}
+              >
                 <Repeat size={24} color="#fff" weight="bold" />
               </button>
             </form>
