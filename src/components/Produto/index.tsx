@@ -6,13 +6,17 @@ import products from "../../data/product";
 import { Trash } from "@phosphor-icons/react";
 import "./style.css";
 
+import { useContext } from "react";
+import { QuantidadeItemContext } from "../../contexts/QuantidadeItems";
+
 interface ProductProps {
   product: Product;
   handleDelete(id: number): void;
 }
 
 const Produto = ({ product, handleDelete }: ProductProps) => {
-  const [quantidade, setQuantidade] = useState<number>(1);
+  const { quantidade, setQuantidade } = useContext(QuantidadeItemContext);
+  // const [quantidade, setQuantidade] = useState<number>(1);
 
   return (
     <>
