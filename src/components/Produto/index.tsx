@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import Product from "./interfaces";
 import products from "../../data/product";
 
@@ -11,12 +9,16 @@ import { QuantidadeItemContext } from "../../contexts/QuantidadeItems";
 
 interface ProductProps {
   product: Product;
-  handleDelete(id: number): void;
 }
 
-const Produto = ({ product, handleDelete }: ProductProps) => {
-  const { quantidade, setQuantidade } = useContext(QuantidadeItemContext);
-  // const [quantidade, setQuantidade] = useState<number>(1);
+const Produto = ({ product }: ProductProps) => {
+  const {
+    products,
+    setProducts,
+    quantidadeTotal,
+    setQuantidadeTotal,
+    handleDelete,
+  } = useContext(QuantidadeItemContext);
 
   return (
     <>
@@ -37,29 +39,31 @@ const Produto = ({ product, handleDelete }: ProductProps) => {
           <div className="qty">
             <input
               type="number"
-              value={quantidade}
-              onChange={(event) => {
-                const newValue = parseFloat(event.target.value);
-                if (newValue >= 0) {
-                  setQuantidade(newValue);
-                } else {
-                  setQuantidade(0);
-                }
-              }}
+              value={product.quantidade}
+              onChange={(event) =>
+                setProducts(
+                  products.map((p) => {
+                    if (p.id === product.id) {
+                      const novoValor = parseFloat(event.target.value) || 0;
+                      const novoTotal =
+                        novoValor > p.quantidade
+                          ? quantidadeTotal + 1
+                          : quantidadeTotal - 1;
+                      p.quantidade = novoValor;
+                      setQuantidadeTotal(novoTotal);
+                    }
+                    return p;
+                  })
+                )
+              }
             />
           </div>
         </td>
-        <td>R$ {(quantidade * product.price).toFixed(2).toString()}</td>
+        <td>R$ {(product.quantidade * product.price).toFixed(2).toString()}</td>
         <td>
           <button className="remove" onClick={() => handleDelete(product.id)}>
             <Trash size={32} color="#666" weight="bold" />
           </button>
-
-          {/* <button
-                  onClick={(event) => handleClick(event, "Clicou no botão")}
-                >
-                  Botão
-                </button> */}
         </td>
       </tr>
     </>
