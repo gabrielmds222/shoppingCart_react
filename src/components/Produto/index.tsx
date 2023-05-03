@@ -44,13 +44,16 @@ const Produto = ({ product }: ProductProps) => {
                 setProducts(
                   products.map((p) => {
                     if (p.id === product.id) {
-                      const novoValor = parseFloat(event.target.value) || 0;
+                      const novoValor = Math.max(
+                        parseFloat(event.target.value) || 0,
+                        0
+                      );
                       const novoTotal =
                         novoValor > p.quantidade
                           ? quantidadeTotal + 1
                           : quantidadeTotal - 1;
                       p.quantidade = novoValor;
-                      setQuantidadeTotal(novoTotal);
+                      setQuantidadeTotal(novoTotal >= 0 ? novoTotal : 0);
                     }
                     return p;
                   })
