@@ -13,7 +13,11 @@ const CarrinhoDeCompras = () => {
     <main>
       <div className="page-title">
         <h2>Carrinho de compras</h2>
-        <p>Você tem {quantidadeTotal} itens</p>
+        {quantidadeTotal > 1 ? (
+          <p>Você tem {quantidadeTotal} itens</p>
+        ) : (
+          <p>Você tem {quantidadeTotal} item</p>
+        )}
       </div>
       <div className="content">
         <section>
