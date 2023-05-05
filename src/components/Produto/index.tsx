@@ -1,5 +1,4 @@
 import Product from "./interfaces";
-import products from "../../data/product";
 
 import { Trash } from "@phosphor-icons/react";
 import "./style.css";
