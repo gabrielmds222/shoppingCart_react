@@ -15,7 +15,6 @@ type ResponseCepDataType = {
 };
 
 const Resumo = () => {
-  let valorTotal = 0;
   const [user, setUser] = useState<ResponseCepDataType>();
   const [cepDigitado, setCepDigitado] = useState<string>("");
   const { products, setProducts, quantidadeTotal, precoFinal, setPrecoFinal } =
@@ -35,16 +34,7 @@ const Resumo = () => {
     }
   }
 
-  const hasCepValueRN = user?.uf === "RN" ? 20 : user?.uf ? 40 : 0;
-
-  // onChange={() => {
-  //   // Soma o valor total dos produtos
-  //   products.forEach((item) => {
-  //     valorTotal += item.quantidade * item.price;
-  //   });
-  //   // Exibe o valor total no console
-  //   console.log(`O valor total é: ${valorTotal}`);
-  // }}
+  const hasCepValueRN = user?.uf === "RN" ? 16.65 : user?.uf ? 32.75 : 0;
 
   useEffect(() => {
     function somaPreco() {
@@ -95,20 +85,20 @@ const Resumo = () => {
 
           <div>
             {quantidadeTotal > 1 ? (
-              <span>itens ({quantidadeTotal})</span>
+              <span>itens ({quantidadeTotal}):</span>
             ) : (
-              <span>item ({quantidadeTotal})</span>
+              <span>item ({quantidadeTotal}):</span>
             )}
             <span>R$ {precoFinal}</span>
           </div>
 
           <div>
-            <span>Frete</span>
+            <span>Frete:</span>
             <span>R$ {hasCepValueRN}</span>
           </div>
 
           <div>
-            <span>Total</span>
+            <span>Total:</span>
             <span>R$ {precoFinal + hasCepValueRN}</span>
           </div>
         </div>
