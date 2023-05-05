@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Repeat } from "@phosphor-icons/react";
 
 import "./style.css";
+import Product from "../Produto/interfaces";
 
 import api from "../../api";
+import { QuantidadeItemContext } from "../../contexts/QuantidadeItems";
+import BotaoConfirmar from "../BotaoConfirmar";
 
 type ResponseCepDataType = {
   cep: string;
@@ -12,8 +15,11 @@ type ResponseCepDataType = {
 };
 
 const Resumo = () => {
+  let valorTotal = 0;
   const [user, setUser] = useState<ResponseCepDataType>();
   const [cepDigitado, setCepDigitado] = useState<string>("");
+  const { products, setProducts, quantidadeTotal, precoFinal, setPrecoFinal } =
+    useContext(QuantidadeItemContext);
 
   async function handleCep(e: any) {
     e.preventDefault();
@@ -24,19 +30,32 @@ const Resumo = () => {
         console.error("ops! ocorreu um erro" + err);
       });
 
-    // if (user?.uf === "RN") {
-    //   setPrecoFrete(precoFrete + 20);
-    //   console.log("preco frete 2", precoFrete);
-    // } else {
-    //   setPrecoFrete(precoFrete + 40);
-    // }
-
     if (!cepDigitado) {
       setUser({ cep: "", localidade: "", uf: "" });
     }
   }
 
   const hasCepValueRN = user?.uf === "RN" ? 20 : user?.uf ? 40 : 0;
+
+  // onChange={() => {
+  //   // Soma o valor total dos produtos
+  //   products.forEach((item) => {
+  //     valorTotal += item.quantidade * item.price;
+  //   });
+  //   // Exibe o valor total no console
+  //   console.log(`O valor total é: ${valorTotal}`);
+  // }}
+
+  useEffect(() => {
+    function somaPreco() {
+      let valorTotal = 0;
+      products.forEach((item) => {
+        valorTotal += item.quantidade * item.price;
+      });
+      return valorTotal;
+    }
+    setPrecoFinal(somaPreco());
+  }, [products]);
 
   return (
     <>
@@ -68,30 +87,33 @@ const Resumo = () => {
                 <Repeat size={24} color="#fff" weight="bold" />
               </button>
             </form>
-            <span>{hasCepValueRN}</span>
+            <span>R$ {hasCepValueRN}</span>
           </div>
           <div>
             <span className="cidade">{user?.localidade}</span>
           </div>
 
           <div>
-            <span>item</span>
-            <span>R$ 100,00</span>
+            {quantidadeTotal > 1 ? (
+              <span>itens ({quantidadeTotal})</span>
+            ) : (
+              <span>item ({quantidadeTotal})</span>
+            )}
+            <span>R$ {precoFinal}</span>
           </div>
 
           <div>
             <span>Frete</span>
-            <span>R$50,00</span>
+            <span>R$ {hasCepValueRN}</span>
           </div>
 
           <div>
             <span>Total</span>
-            <span>R$150,00</span>
+            <span>R$ {precoFinal + hasCepValueRN}</span>
           </div>
-
-          <div className="btn-container">
-            <button>Fechar pedido</button>
-          </div>
+        </div>
+        <div className="btn-container">
+          <BotaoConfirmar />
         </div>
       </div>
     </>
@@ -99,3 +121,7 @@ const Resumo = () => {
 };
 
 export default Resumo;
+
+// array.forEach(
+//   (item) => { valorTotal += item.quantidade * item.preço; }
+//   );

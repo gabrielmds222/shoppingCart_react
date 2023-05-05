@@ -31,3 +31,8 @@ header {
   font-size: 14px;
   font-weight: normal;
 }
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
