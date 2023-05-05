@@ -8,7 +8,7 @@ const products: Product[] = [
     img: Pizza,
     name: "Pizza",
     description: "Pizza 1",
-    price: 59.99,
+    price: 10,
     quantidade: 1,
   },
   {
@@ -16,7 +16,7 @@ const products: Product[] = [
     img: Pizza,
     name: "Pizza",
     description: "Pizza 2",
-    price: 79.99,
+    price: 5,
     quantidade: 1,
   },
   {
@@ -24,7 +24,7 @@ const products: Product[] = [
     img: Pizza,
     name: "Pizza",
     description: "Pizza do 3",
-    price: 59.99,
+    price: 15,
     quantidade: 1,
   },
 ];
